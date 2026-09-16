@@ -10,22 +10,14 @@ openButton.addEventListener("click", () => {
   }
 });
 
+// Submit handler: show a sending status and allow the native form submission to FormSubmit
 form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const data = new FormData(form);
-  const subject = "Solicitud Modo Fiestas — " + data.get("company");
-  const body =
-    "Nombre: " + data.get("name") + "\n" +
-    "Empresa: " + data.get("company") + "\n" +
-    "Email: " + data.get("email") + "\n\n" +
-    "Mensaje:\n" + data.get("message");
-
-  status.textContent = "Solicitud preparada. Abrí el correo para enviarla.";
-  const link = document.createElement("a");
-  link.href = "mailto:?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-  link.textContent = "Abrir correo para enviar la solicitud";
-  link.style.display = "inline-block";
-  link.style.marginTop = "8px";
-  link.style.color = "#d9baff";
-  status.append(document.createElement("br"), link);
+  // show immediate feedback to the user
+  status.textContent = "Enviando solicitud… Por favor espere.";
+  const submitButton = form.querySelector('button[type="submit"]');
+  if (submitButton) {
+    submitButton.disabled = true;
+    submitButton.style.opacity = "0.7";
+  }
+  // Do NOT call event.preventDefault() so the browser will post the form to FormSubmit
 });
