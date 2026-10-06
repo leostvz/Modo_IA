@@ -150,12 +150,16 @@ h3 {
 }
 
 .logo {
-  display: flex;
-  align-items: center;
-  gap: 11px;
-  font-size: 21px;
-  font-weight: 900;
-  letter-spacing: 0.1em;
+  display: block;
+  width: 195px;
+  flex: 0 0 auto;
+  line-height: 0;
+}
+
+.logo img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 .switch {
